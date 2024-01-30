@@ -12,15 +12,16 @@ def chatbot(user_query, openai_api_key, business_info):
 
     # Define fixed examples
     examples = [
-        {"input": f"Tell me about your business.", "output": business_info},
-        # Add more examples as needed
+        {"input": "Tell me about your business.",
+        "output": business_info
+        },
     ]
 
     # Create a few-shot prompt template
     example_prompt = ChatPromptTemplate.from_messages(
         [
             ("human", "{input}"),
-            ("ai", "{output}"),
+            ("{output}"),
         ]
     )
     few_shot_prompt = FewShotChatMessagePromptTemplate(
