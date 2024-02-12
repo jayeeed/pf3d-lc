@@ -21,7 +21,7 @@ def chatbot(user_query, openai_api_key, business_info):
     example_prompt = ChatPromptTemplate.from_messages(
         [
             ("human", "{input}"),
-            ("{output}"),
+            ("ai", "{output}"),
         ]
     )
     few_shot_prompt = FewShotChatMessagePromptTemplate(
