@@ -42,6 +42,24 @@ curl -i -X GET "https://graph.facebook.com/me?access_token=EAA1LsR3ZAS6wBOz4ppgr
 curl -i -X GET "https://graph.facebook.com/v19.0/me/conversations?access_token=EAA1LsR3ZAS6wBOz4ppgrwtbuv3N0WGdOrccmpLPwKVhESPvNyg1AmZBlZCZCbehZAHPRt2NcVJcuq1ENggAT3xBG5dLYyrS0AitcGnUBPYbDTPUvf1Kbr1r2kBxiUyaZCVrG4vNeZC2UpjsCQkeEFT6kyxYHFMhSwDKlRpd9Ux3GZAiRWuWzsHykOo3hompXuRLRnGascuNoz4ZB7ohIZD"
 ```
 
+## get_message_id ["created_time" > "messages" > "id"]
+
+```bash
+curl -i -X GET "https://graph.facebook.com/v19.0/me/conversations?fields=created_time,messages&access_token=EAA1LsR3ZAS6wBOz4ppgrwtbuv3N0WGdOrccmpLPwKVhESPvNyg1AmZBlZCZCbehZAHPRt2NcVJcuq1ENggAT3xBG5dLYyrS0AitcGnUBPYbDTPUvf1Kbr1r2kBxiUyaZCVrG4vNeZC2UpjsCQkeEFT6kyxYHFMhSwDKlRpd9Ux3GZAiRWuWzsHykOo3hompXuRLRnGascuNoz4ZB7ohIZD"
+```
+
+## get_psid [exclude page+convo "id"]
+
+```bash
+curl -i -X GET "https://graph.facebook.com/v19.0/t_7144392195656788?fields=id,name,participants&access_token=EAA1LsR3ZAS6wBOz4ppgrwtbuv3N0WGdOrccmpLPwKVhESPvNyg1AmZBlZCZCbehZAHPRt2NcVJcuq1ENggAT3xBG5dLYyrS0AitcGnUBPYbDTPUvf1Kbr1r2kBxiUyaZCVrG4vNeZC2UpjsCQkeEFT6kyxYHFMhSwDKlRpd9Ux3GZAiRWuWzsHykOo3hompXuRLRnGascuNoz4ZB7ohIZD"
+```
+
+## get_message_text ["message"]
+
+```bash
+curl -i -X GET "https://graph.facebook.com/v19.0/m_3wx-g0AVtPAxwQwEhtqNuvdFjxhg2XFDAAaGsbM5JFJRA9zaD6SJOYOe0AwZO6EbInlhKJhuJbUByPeEuwjrwA?fields=message&access_token=EAA1LsR3ZAS6wBOz4ppgrwtbuv3N0WGdOrccmpLPwKVhESPvNyg1AmZBlZCZCbehZAHPRt2NcVJcuq1ENggAT3xBG5dLYyrS0AitcGnUBPYbDTPUvf1Kbr1r2kBxiUyaZCVrG4vNeZC2UpjsCQkeEFT6kyxYHFMhSwDKlRpd9Ux3GZAiRWuWzsHykOo3hompXuRLRnGascuNoz4ZB7ohIZD"
+```
+
 ## send_message
 
 ```bash
