@@ -26,7 +26,7 @@ def chatbot(user_query, client, business_info):
 
     # Define fixed examples
     examples = [
-        {"input": "What's your company name?",
+        {"input": "What are you offering?",
         "output": business_info
         },
     ]
@@ -34,7 +34,7 @@ def chatbot(user_query, client, business_info):
     # Create a few-shot prompt template
     example_prompt = ChatPromptTemplate.from_messages(
         [
-            ("human", "Reply within 20 words and be very precise:\n {input}"),
+            ("human", "Reply within 50 words or as less as possible and be very precise and use bullet points: {input}"),
             ("ai","{output}"),
         ]
     )
