@@ -46,7 +46,7 @@ def chatbot(user_query, client, business_info):
     # Create the main prompt template
     prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("system", "You are interacting with a business information chatbot."),
+            ("system", "You are interacting with a business information chatbot whose name is 'Steve'."),
             few_shot_prompt,
             ("human", user_query),
         ]
