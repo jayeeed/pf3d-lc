@@ -3,7 +3,7 @@
 ## verify_token
 
 ```bash
-https://8988-103-92-204-0.ngrok-free.app/webhook?hub.mode=subscribe&hub.verify_token=mytoken&hub.challenge=702365780
+https://flamingo-better-collie.ngrok-free.app/webhook?hub.mode=subscribe&hub.verify_token=mytoken&hub.challenge=702365780
 ```
 
 ## page_id
@@ -28,12 +28,6 @@ t_7144392195656788
 
 ```bash
 EAA1LsR3ZAS6wBOz4ppgrwtbuv3N0WGdOrccmpLPwKVhESPvNyg1AmZBlZCZCbehZAHPRt2NcVJcuq1ENggAT3xBG5dLYyrS0AitcGnUBPYbDTPUvf1Kbr1r2kBxiUyaZCVrG4vNeZC2UpjsCQkeEFT6kyxYHFMhSwDKlRpd9Ux3GZAiRWuWzsHykOo3hompXuRLRnGascuNoz4ZB7ohIZD
-```
-
-## check_status
-
-```bash
-curl -i -X GET "https://graph.facebook.com/me?access_token=EAA1LsR3ZAS6wBOz4ppgrwtbuv3N0WGdOrccmpLPwKVhESPvNyg1AmZBlZCZCbehZAHPRt2NcVJcuq1ENggAT3xBG5dLYyrS0AitcGnUBPYbDTPUvf1Kbr1r2kBxiUyaZCVrG4vNeZC2UpjsCQkeEFT6kyxYHFMhSwDKlRpd9Ux3GZAiRWuWzsHykOo3hompXuRLRnGascuNoz4ZB7ohIZD"
 ```
 
 ## list_convos

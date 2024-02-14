@@ -1,14 +1,12 @@
 import requests
 import os, signal
 from flask import Flask, request
-from openai import OpenAI
+from langchain_openai import OpenAI
+from langchain.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
+from langchain.chains import LLMChain
 from dotenv import load_dotenv
-# import logging, ngrok
 
 load_dotenv()
-
-# logging.basicConfig(level=logging.INFO)
-# listener = ngrok.forward("localhost:5000", authtoken_from_env=True)
 
 app = Flask(__name__)
 
@@ -18,6 +16,49 @@ access_token = os.environ.get("FACEBOOK_ACCESS_TOKEN")
 verify_token = os.environ.get("VERIFY_TOKEN")
 
 API = "https://graph.facebook.com/v19.0/me/messages?access_token=" + access_token
+
+# Read business_info from the text file
+with open("Bangobandu.txt", "r") as file:
+    business_info = file.read()
+
+def chatbot(user_query, client, business_info):
+    llm = OpenAI(temperature=0.7, openai_api_key=client)
+
+    # Define fixed examples
+    examples = [
+        {"input": "What's your company name?",
+        "output": business_info
+        },
+    ]
+
+    # Create a few-shot prompt template
+    example_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("human", "Reply within 20 words and be very precise:\n {input}"),
+            ("ai","{output}"),
+        ]
+    )
+    few_shot_prompt = FewShotChatMessagePromptTemplate(
+        example_prompt=example_prompt,
+        examples=examples,
+    )
+
+    # Create the main prompt template
+    prompt_template = ChatPromptTemplate.from_messages(
+        [
+            ("system", "You are interacting with a business information chatbot."),
+            few_shot_prompt,
+            ("human", user_query),
+        ]
+    )
+
+    # Create the chain with the prompt template
+    faq_chain = LLMChain(llm=llm, prompt=prompt_template, output_key="response")
+
+    # Invoke the chain with user input
+    response = faq_chain.invoke({'user_query': user_query})
+
+    return response
 
 @app.route('/webhook', methods=['GET'])
 def verify():
@@ -38,12 +79,10 @@ def fbwebhook():
             chat_gpt_input=message['text']
             print("User=>", chat_gpt_input)
 
-            chat_completion = client.chat.completions.create(
-                            model="gpt-3.5-turbo",
-                            messages=[{"role": "user", "content": chat_gpt_input}],
-                            max_tokens=100)          
-            chatbot_res = chat_completion.choices[0].message.content
+            chatbot_res = chatbot(chat_gpt_input, os.environ.get("OPENAI_API_KEY"), business_info)
 
+            chatbot_res = chatbot_res['response']
+            
             print("Response=>", chatbot_res)
             response = {
                 'recipient': {'id': sender_id},
